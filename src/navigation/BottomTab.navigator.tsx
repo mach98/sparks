@@ -9,7 +9,11 @@ const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 export const BottomTabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name={ROUTES.HomeStack} component={HomeStackNavigator} />
+      <Tab.Screen
+        name={ROUTES.HomeStack}
+        component={HomeStackNavigator}
+        options={{ title: 'Home' }}
+      />
       <Tab.Screen name={ROUTES.Settings} component={SettingsScreen} />
     </Tab.Navigator>
   );

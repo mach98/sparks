@@ -7,13 +7,13 @@ export type RootStackParamList = {
 };
 
 export type BottomTabNavigatorParamList = {
-  [ROUTES.HomeStack]: undefined;
+  [ROUTES.HomeStack]: NavigatorScreenParams<HomeStackNavigatorParamList>;
   [ROUTES.Settings]: undefined;
 };
 
 export type HomeStackNavigatorParamList = {
   [ROUTES.Home]: undefined;
-  [ROUTES.QuizStack]: undefined;
+  [ROUTES.QuizStack]: NavigatorScreenParams<QuizStackNavigatorParamList>;
 };
 
 export type QuizStackNavigatorParamList = {
