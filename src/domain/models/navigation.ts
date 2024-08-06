@@ -18,6 +18,7 @@ export type HomeStackNavigatorParamList = {
 
 export type QuizStackNavigatorParamList = {
   [ROUTES.Quiz]: undefined;
+  [ROUTES.QuizList]: undefined;
   [ROUTES.QuizDetails]: undefined;
   [ROUTES.Results]: undefined;
 };

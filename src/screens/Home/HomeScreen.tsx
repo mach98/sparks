@@ -1,11 +1,5 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Pressable,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, Pressable, Image, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import React, { FC } from 'react';
 import { HomeStackNavigatorParamListNavProps } from '../../domain/models/navigation';
 import { ROUTES } from '../../navigation/routes';
@@ -78,7 +72,7 @@ const HomeScreen: FC<HomeStackNavigatorParamListNavProps<ROUTES.Home>> = () => {
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate(ROUTES.QuizStack, {
-                  screen: ROUTES.QuizDetails,
+                  screen: ROUTES.QuizList,
                 })
               }
             >
