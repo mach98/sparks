@@ -13,44 +13,42 @@ const QuizScreen: FC<QuizStackParamListNavProps<ROUTES.Quiz>> = ({
   navigation,
 }) => {
   const { quizId } = route.params;
-  const { currentQuiz } = useQuizStore();
-
-  const isMathOrChem =
-    currentQuiz?.category === 'Math' || currentQuiz?.category === 'Chemistry';
-
+  const { currentQuiz, setQuizScore } = useQuizStore();
+  const [score, setScore] = useState(0);
   if (!currentQuiz || currentQuiz.id !== quizId) {
     navigation.goBack();
     return null;
   }
 
-  const [answers, setAnswers] = useState({});
-
-  const handleAnswerChange = (questionId: string, answer: string) => {
-    setAnswers({ ...answers, [questionId]: answer });
+  const onAnswerSelection = () => {
+    setScore((prev) => prev + 1);
+    console.log(score);
   };
+
   const handleSubmit = () => {
-    navigation.navigate(ROUTES.Results);
+    setQuizScore(score);
+    navigation.replace(ROUTES.Results);
   };
 
   return (
     <SafeAreaView className='flex-1 '>
-      <ScrollView className='flex-1 p-3'>
+      <ScrollView className='p-3'>
         {currentQuiz.questions.map((question) => (
           <QuestionItem
             key={question.id}
             question={question}
-            onAnswerChange={handleAnswerChange}
+            onAnswerSelection={onAnswerSelection}
           />
         ))}
-        <TouchableOpacity
-          onPress={handleSubmit}
-          className='bg-white px-5 py-3 rounded-full w-3/4 self-center mt-10'
-        >
-          <Text className='text-center text-lg font-semibold text-primary'>
-            Submit
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
+      <TouchableOpacity
+        onPress={handleSubmit}
+        className='bg-white px-5 py-3 rounded-full w-3/4 self-center mt-15'
+      >
+        <Text className='text-center text-lg font-semibold text-primary'>
+          Submit
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

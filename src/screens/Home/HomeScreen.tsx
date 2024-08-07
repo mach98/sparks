@@ -4,19 +4,22 @@ import React, { FC } from 'react';
 import { HomeStackNavigatorParamListNavProps } from '../../domain/models/navigation';
 import { ROUTES } from '../../navigation/routes';
 import {
-  AntDesign,
   FontAwesome5,
   Ionicons,
   MaterialCommunityIcons,
-  MaterialIcons,
   SimpleLineIcons,
 } from '@expo/vector-icons';
 import { COLORS } from '@/src/themes/colors';
 import { Avatar } from '@/src/themes/images';
-import { useHomeStackNavigation } from '@/src/navigation/useTypedNavigation';
+import {
+  useHomeStackNavigation,
+  useQuizStackNavigation,
+} from '@/src/navigation/useTypedNavigation';
+import SButton from '@/src/components/SButton';
 
 const HomeScreen: FC<HomeStackNavigatorParamListNavProps<ROUTES.Home>> = () => {
   const navigation = useHomeStackNavigation();
+  const quizNavigation = useQuizStackNavigation();
   return (
     <SafeAreaView className='flex-1'>
       <View className='h-1/3 top-0 bg-primary' />
@@ -49,19 +52,16 @@ const HomeScreen: FC<HomeStackNavigatorParamListNavProps<ROUTES.Home>> = () => {
         </View>
         <View className='bg-white items-center rounded-xl w-full'>
           <View className='p-5 items-center'>
-            <Text className='text-darkBlue text-lg font-semibold text-center'>
-              Quiz of the Day
-            </Text>
-            <Text className='text-darkBlue text-5xl font-bold mt-3'>
-              1,000,000
+            <Text className='text-darkBlue text-4xl font-bold mt-3'>
+              Random Quiz
             </Text>
           </View>
           <View className='mt-5 bg-primary w-full rounded-b-xl p-5 flex-row justify-center items-center'>
-            <TouchableOpacity className='bg-white px-5 py-3 rounded-full w-3/4'>
-              <Text className='text-center text-lg font-semibold text-primary'>
-                Start Quiz
-              </Text>
-            </TouchableOpacity>
+            <SButton
+              title='Start Quiz'
+              onPress={() => {}}
+              borderRadius='rounded-full'
+            />
           </View>
         </View>
         <View className='px-5 py-3'>
@@ -80,7 +80,7 @@ const HomeScreen: FC<HomeStackNavigatorParamListNavProps<ROUTES.Home>> = () => {
             </TouchableOpacity>
           </View>
           <View className='flex-row justify-between mt-3'>
-            <TouchableOpacity className='items-center'>
+            <TouchableOpacity className='items-center' onPress={() => {}}>
               <MaterialCommunityIcons name='math-compass' size={25} />
               <Text className='mt-2 font-semibold'>Math</Text>
             </TouchableOpacity>
