@@ -71,11 +71,13 @@ const QuestionItem: FC<QuizItemProps> = ({ question, onAnswerChange }) => {
 
   return (
     <View key={question.id} className='mt-5 self-center'>
-      <WebView
-        originWhitelist={['*']}
-        source={{ html: renderMathContent(question.content) }}
-        style={{ width: width * 0.9, height: 10, alignItems: 'center' }}
-      />
+      <View className='w-full h-10'>
+        <WebView
+          originWhitelist={['*']}
+          source={{ html: renderMathContent(question.content) }}
+          style={{ width: width * 0.9, height: 'auto', alignItems: 'center' }}
+        />
+      </View>
       {question.type === 'image' && (
         <Image
           source={{ uri: question.image }}
