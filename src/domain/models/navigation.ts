@@ -17,8 +17,8 @@ export type HomeStackNavigatorParamList = {
 };
 
 export type QuizStackNavigatorParamList = {
-  [ROUTES.Quiz]: undefined;
-  [ROUTES.QuizList]: undefined;
+  [ROUTES.Quiz]: { quizId: string };
+  [ROUTES.QuizCategories]: undefined;
   [ROUTES.QuizDetails]: undefined;
   [ROUTES.Results]: undefined;
 };

@@ -72,7 +72,7 @@ const HomeScreen: FC<HomeStackNavigatorParamListNavProps<ROUTES.Home>> = () => {
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate(ROUTES.QuizStack, {
-                  screen: ROUTES.QuizList,
+                  screen: ROUTES.QuizCategories,
                 })
               }
             >

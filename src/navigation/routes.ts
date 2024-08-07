@@ -4,8 +4,8 @@ export enum ROUTES {
   HomeStack = 'HomeStack',
   Settings = 'Settings',
   Quiz = 'Quiz',
-  QuizList = 'QuizList',
   QuizDetails = 'QuizDetails',
+  QuizCategories = 'QuizCategories',
   QuizStack = 'QuizNav',
   Results = 'Results',
 }
