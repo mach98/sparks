@@ -10,6 +10,7 @@ import RenderHTML, {
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import { Question } from '../domain/models/Question';
+import { WebView } from 'react-native-webview';
 
 interface QuizItemProps {
   question: Question;
@@ -19,34 +20,36 @@ interface QuizItemProps {
 const QuestionItem: FC<QuizItemProps> = ({ question, onAnswerChange }) => {
   const { width, height } = useWindowDimensions();
 
-  const renderMathContent = () => {
-    try {
-      const html = katex.renderToString(String.raw`c = \pm\sqrt{a^2 + b^2}`, {
-        throwOnError: false,
-      });
-      return html;
-    } catch (error) {
-      return content;
-    }
-  };
-
-  const mathRenderer = (props: RenderHTMLProps): ReactElement => {
-    const { key, domNode } = props;
-    const content = domNode.children[0].data;
-    return (
-      <Text key={key} className='text-red-500 text-lg font-semibold'>
-        {renderMathContent(content)}
-      </Text>
-    );
+  const renderMathContent = (content: string) => {
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var content = "${content.replace(/"/g, '\\"')}";
+            var html = katex.renderToString(content, { throwOnError: false });
+            document.getElementById('content').innerHTML = html;
+          });
+        </script>
+      </head>
+      <body>
+        <div id="content"></div>
+      </body>
+      </html>
+    `;
+    return htmlContent;
   };
 
   return (
     <View key={question.id} className={`mt-7 w-[${width}*0.9] self-center`}>
-      <RenderHTML
-        source={{ html: renderMathContent() }}
-        contentWidth={width * 0.9}
+      <WebView
+        originWhitelist={['*']}
+        source={{ html: renderMathContent(question.content) }}
+        className={`w-[${width}*0.9] h-[${height} * 0.3]`}
       />
-
       {question.type === 'image' && (
         <Image
           source={{ uri: question.image }}

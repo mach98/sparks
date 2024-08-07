@@ -6,6 +6,7 @@ import { ROUTES } from '../../navigation/routes';
 import useQuizStore from '@/src/store/useQuizStore';
 import QuestionItem from '@/src/components/QuestionItem';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import WebView from 'react-native-webview';
 
 const QuizScreen: FC<QuizStackParamListNavProps<ROUTES.Quiz>> = ({
   route,
