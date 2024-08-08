@@ -3,7 +3,6 @@ import React, { FC, useCallback, useEffect, useState, memo } from 'react';
 import { QuizStackParamListNavProps } from '@/src/domain/models/navigation';
 import { ROUTES } from '@/src/navigation/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { quizzesData } from '@/src/data/mocks';
 import { getIcons } from '@/src/utils/getIcon';
 import useQuizStore from '@/src/store/useQuizStore';
 

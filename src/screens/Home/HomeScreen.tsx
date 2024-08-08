@@ -21,14 +21,20 @@ import useQuizStore from '@/src/store/useQuizStore';
 
 const HomeScreen: FC<HomeStackNavigatorParamListNavProps<ROUTES.Home>> = () => {
   const quizData = quizzesData;
-  const { quizzes, setQuizzes, setSelectedCategory } = useQuizStore();
+  const { setQuizzes, setSelectedCategory } = useQuizStore();
   const navigation = useHomeStackNavigation();
-  const quizNavigation = useQuizStackNavigation();
 
   useEffect(() => {
     setQuizzes(quizData);
   }, []);
 
+  const handleCategoryPress = (category: string) => {
+    setSelectedCategory(category);
+    navigation.navigate(ROUTES.QuizStack, {
+      screen: ROUTES.QuizDetails,
+    });
+    //quizNavigation.navigate(ROUTES.QuizDetails);
+  };
   return (
     <SafeAreaView className='flex-1'>
       <View className='h-1/3 top-0 bg-primary' />
@@ -89,23 +95,38 @@ const HomeScreen: FC<HomeStackNavigatorParamListNavProps<ROUTES.Home>> = () => {
             </TouchableOpacity>
           </View>
           <View className='flex-row justify-between mt-3'>
-            <TouchableOpacity className='items-center' onPress={() => {}}>
+            <TouchableOpacity
+              className='items-center'
+              onPress={() => handleCategoryPress('Math')}
+            >
               <MaterialCommunityIcons name='math-compass' size={25} />
               <Text className='mt-2 font-semibold'>Math</Text>
             </TouchableOpacity>
-            <TouchableOpacity className='items-center'>
+            <TouchableOpacity
+              className='items-center'
+              onPress={() => handleCategoryPress('Chemistry')}
+            >
               <SimpleLineIcons name='chemistry' size={25} />
               <Text className='mt-2 font-semibold'>Chemistry</Text>
             </TouchableOpacity>
-            <TouchableOpacity className='items-center'>
+            <TouchableOpacity
+              className='items-center'
+              onPress={() => handleCategoryPress('Biology')}
+            >
               <FontAwesome5 name='microscope' size={25} />
               <Text className='mt-2 font-semibold'>Biology</Text>
             </TouchableOpacity>
-            <TouchableOpacity className='items-center'>
+            <TouchableOpacity
+              className='items-center'
+              onPress={() => handleCategoryPress('History')}
+            >
               <Ionicons name='time-outline' size={25} />
               <Text className='mt-2 font-semibold'>History</Text>
             </TouchableOpacity>
-            <TouchableOpacity className='items-center'>
+            <TouchableOpacity
+              className='items-center'
+              onPress={() => handleCategoryPress('English')}
+            >
               <MaterialCommunityIcons name='alphabetical-variant' size={25} />
               <Text className='mt-2 font-semibold'>English</Text>
             </TouchableOpacity>
