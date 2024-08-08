@@ -45,9 +45,7 @@ This project enhances the Spark! e-learning platform by creating an interactive 
     yarn start
     ```
 
-4. **Run on Android or iOS:**
+4. **Run on Android:**
     ```bash
-    yarn android
-    # or
-    yarn ios
+    yarn start --android
     ```
