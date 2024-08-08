@@ -10,12 +10,7 @@ import useQuizStore from '@/src/store/useQuizStore';
 const QuizCategoriesListScreen: FC<
   QuizStackParamListNavProps<ROUTES.QuizCategories>
 > = ({ navigation }) => {
-  const quizData = quizzesData;
-  const { quizzes, setQuizzes, setSelectedCategory } = useQuizStore();
-
-  useEffect(() => {
-    setQuizzes(quizData);
-  }, []);
+  const { quizzes, setSelectedCategory } = useQuizStore();
 
   const handleCategoryPress = (category: string) => {
     setSelectedCategory(category);

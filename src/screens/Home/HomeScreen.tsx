@@ -1,6 +1,6 @@
 import { View, Text, Pressable, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { HomeStackNavigatorParamListNavProps } from '../../domain/models/navigation';
 import { ROUTES } from '../../navigation/routes';
 import {
@@ -16,10 +16,19 @@ import {
   useQuizStackNavigation,
 } from '@/src/navigation/useTypedNavigation';
 import SButton from '@/src/components/SButton';
+import { quizzesData } from '@/src/data/mocks';
+import useQuizStore from '@/src/store/useQuizStore';
 
 const HomeScreen: FC<HomeStackNavigatorParamListNavProps<ROUTES.Home>> = () => {
+  const quizData = quizzesData;
+  const { quizzes, setQuizzes, setSelectedCategory } = useQuizStore();
   const navigation = useHomeStackNavigation();
   const quizNavigation = useQuizStackNavigation();
+
+  useEffect(() => {
+    setQuizzes(quizData);
+  }, []);
+
   return (
     <SafeAreaView className='flex-1'>
       <View className='h-1/3 top-0 bg-primary' />
